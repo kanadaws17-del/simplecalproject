@@ -16,13 +16,13 @@ pipeline {
             }
         }
         
-        stage('Build') {
-            steps {
-                echo '========== Building the project =========='
-                // Clean and compile the project
-                bat 'mvn clean compile'
-            }
-        }
+
+		stage('Build') {
+			steps {
+				echo 'Building the project ========='
+				sh 'mvn clean install'   // instead of bat
+			}
+		}
         
         stage('Test') {
             steps {
