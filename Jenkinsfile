@@ -20,7 +20,7 @@ pipeline {
 		stage('Build') {
 			steps {
 				echo 'Building the project ========='
-				sh 'mvn clean install'   // instead of bat
+				sh 'mvn clean install'   
 			}
 		}
         
@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo '========== Running Unit Tests =========='
                 // Run all tests
-                bat 'mvn test'
+                sh 'mvn test'
             }
             post {
                 always {
@@ -42,7 +42,7 @@ pipeline {
             steps {
                 echo '========== Packaging the application =========='
                 // Create JAR file
-                bat 'mvn package -DskipTests'
+                sh 'mvn package -DskipTests'
             }
         }
         
@@ -51,7 +51,7 @@ pipeline {
                 echo '========== Deploying the application =========='
                 // For this demo, we'll just run the application
                 // In real projects, you'd deploy to a server
-                bat 'java -jar target/simple-calculator-1.0-SNAPSHOT.jar'
+                sh 'java -jar target/simple-calculator-1.0-SNAPSHOT.jar'
                 
                 echo '========== Deployment Complete! =========='
                 echo 'JAR file created at: target/simple-calculator-1.0-SNAPSHOT.jar'
